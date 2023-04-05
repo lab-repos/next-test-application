@@ -11,15 +11,9 @@ RUN npm install
 
 COPY . .
 
-#RUN useradd -ms /bin/bash node
-#RUN adduser -S -D -h /usr/app/src node
-RUN usermod -aG sudo node
-RUN chown -R node:node /app
-USER node
-
 ###
-RUN useradd -ms /bin/bash node
-RUN usermod -aG sudo node
+#RUN useradd -ms /bin/bash node
+#RUN usermod -aG sudo node
 RUN chown -R node:node /app
 USER node
 ##
