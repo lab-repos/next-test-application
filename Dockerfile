@@ -14,9 +14,10 @@ COPY . .
 ###
 #RUN useradd -ms /bin/bash node
 #RUN usermod -aG sudo node
-RUN chown -R node:node /app
-USER node
-##
+#RUN chown -R node:node /app
+#USER node
+
+RUN chmod -R 777 /app
 
 RUN npm run build
 
