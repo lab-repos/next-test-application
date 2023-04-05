@@ -1,7 +1,7 @@
 FROM node:18-alpine AS builder
 
 WORKDIR /app 
-#RUN chown -R node:node 
+#RUN chown -R node:node /app
 
 COPY package.json /app
 
@@ -10,10 +10,13 @@ COPY package.json /app
 RUN npm install
 
 COPY . .
-#RUN useradd -ms /bin/bash nextjs
-#RUN usermod -aG sudo nextjs 
-#RUN chown -R nextjs:nextjs /app
-USER root
+
+#RUN useradd -ms /bin/bash node
+RUN adduser -S -D -h /usr/app/src node
+RUN usermod -aG sudo node
+RUN chown -R node:node /app
+USER node
+
 RUN npm run build
 
 FROM node:18-alpine AS runner
