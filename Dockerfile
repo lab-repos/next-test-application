@@ -17,6 +17,13 @@ RUN usermod -aG sudo node
 RUN chown -R node:node /app
 USER node
 
+###
+RUN useradd -ms /bin/bash node
+RUN usermod -aG sudo node
+RUN chown -R node:node /app
+USER node
+##
+
 RUN npm run build
 
 FROM node:18-alpine AS runner
